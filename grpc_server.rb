@@ -1,7 +1,3 @@
-require "grpc"
-require "yaml"
-require "active_record"
-require "logger"
 require "./app"
 
 # main starts an RpcServer that receives requests to GreeterServer at the sample
