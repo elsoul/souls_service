@@ -4,6 +4,7 @@ require "erb"
 require "active_record"
 require "logger"
 require "zeitwerk"
+require "dotenv/load"
 require "./app"
 
 loader = Zeitwerk::Loader.new
