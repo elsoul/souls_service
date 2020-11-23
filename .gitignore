@@ -28,3 +28,4 @@
 .irb_history
 .idea
 .env
+/config/keyfile.json
