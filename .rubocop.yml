@@ -193,3 +193,6 @@ Style/ImplicitRuntimeError:
 
 Lint/NonDeterministicRequireOrder:
   Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false

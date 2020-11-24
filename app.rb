@@ -10,6 +10,7 @@ require "./app"
 loader = Zeitwerk::Loader.new
 loader.push_dir("#{Dir.pwd}/app/controllers")
 loader.push_dir("#{Dir.pwd}/app/services")
+# loader.push_dir("#{Dir.pwd}/app/models")
 loader.do_not_eager_load("#{Dir.pwd}/app/services")
 loader.collapse("#{__dir__}/app/services")
 loader.setup

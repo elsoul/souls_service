@@ -1,32 +1,29 @@
 module ArticleMethod
+
   def create_article(grpc_req, _unused_call)
     logger = Logger.new(STDOUT)
     firestore = Google::Cloud::Firestore.new
     article = firestore.col("articles").doc
-    article.set({
-                  user_id: grpc_req.user_id,
-                  title: grpc_req.title,
-                  body: grpc_req.body,
-                  thumnail_url: grpc_req.thumnail_url,
-                  public_date: grpc_req.public_date,
-                  article_category_id: grpc_req.article_category_id,
-                  is_public: grpc_req.is_public,
-                  tag: JSON.parse(grpc_req.tag.to_json),
-                  has_series: grpc_req.has_series,
-                  series_id: grpc_req.series_id,
-                  episode_num: grpc_req.episode_num
-                })
-
-    if article
-      article = Article.find(data.id)
-      res = Souls::CreateArticleReply.new(
-        { article: article.to_proto }
-      )
-      logger.info res.article
-      res
-    else
-      logger.debug data.errors.full_messages
-    end
+    article.set({})
+    data = firestore.col("articles").doc(article.document_id)
+    article_hash = {
+      id: article.document_id,
+      user_id: grpc_req.user_id,
+      title: grpc_req.title,
+      body: grpc_req.body,
+      thumnail_url: grpc_req.thumnail_url,
+      public_date: grpc_req.public_date,
+      is_public: grpc_req.is_public,
+      tag: grpc_req.tag.to_a,
+      created_at: Time.now.utc.to_i,
+      updated_at: Time.now.utc.to_i
+    }
+    data.update article_hash
+    res = Souls::CreateArticleReply.new(
+      { article: article_hash }
+    )
+    logger.info res.article
+    res
   rescue StandardError => error
     logger.debug error
   end
@@ -61,4 +58,5 @@ module ArticleMethod
   def update_article(grpc_req, _unused_call); end
 
   def delete_article(grpc_req, _unused_call); end
+
 end
