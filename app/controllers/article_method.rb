@@ -1,20 +1,23 @@
 module ArticleMethod
   def create_article(grpc_req, _unused_call)
     logger = Logger.new(STDOUT)
-    data = Article.new(
-      user_id: grpc_req.user_id,
-      title: grpc_req.title,
-      body: grpc_req.body,
-      thumnail_url: grpc_req.thumnail_url,
-      public_date: grpc_req.public_date,
-      article_category_id: grpc_req.article_category_id,
-      is_public: grpc_req.is_public,
-      tag: JSON.parse(grpc_req.tag.to_json),
-      has_series: grpc_req.has_series,
-      series_id: grpc_req.series_id,
-      episode_num: grpc_req.episode_num
-    )
-    if data.save
+    firestore = Google::Cloud::Firestore.new
+    article = firestore.col("articles").doc
+    article.set({
+                  user_id: grpc_req.user_id,
+                  title: grpc_req.title,
+                  body: grpc_req.body,
+                  thumnail_url: grpc_req.thumnail_url,
+                  public_date: grpc_req.public_date,
+                  article_category_id: grpc_req.article_category_id,
+                  is_public: grpc_req.is_public,
+                  tag: JSON.parse(grpc_req.tag.to_json),
+                  has_series: grpc_req.has_series,
+                  series_id: grpc_req.series_id,
+                  episode_num: grpc_req.episode_num
+                })
+
+    if article
       article = Article.find(data.id)
       res = Souls::CreateArticleReply.new(
         { article: article.to_proto }
@@ -55,9 +58,7 @@ module ArticleMethod
     fail!(:internal, :unknown, "Unknown error when listing Articles: #{e.message}")
   end
 
-  def update_article(grpc_req, _unused_call)
-  end
+  def update_article(grpc_req, _unused_call); end
 
-  def delete_article(grpc_req, _unused_call)
-  end
+  def delete_article(grpc_req, _unused_call); end
 end
