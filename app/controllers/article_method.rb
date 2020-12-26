@@ -15,8 +15,8 @@ module ArticleMethod
       public_date: grpc_req.public_date,
       is_public: grpc_req.is_public,
       tag: grpc_req.tag.to_a,
-      created_at: Time.now.utc.to_i,
-      updated_at: Time.now.utc.to_i
+      created_at: Time.now.utc,
+      updated_at: Time.now.utc
     }
     data.update article_hash
     res = Souls::CreateArticleReply.new(
