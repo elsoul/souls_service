@@ -4,7 +4,7 @@ require "logger"
 
 desc "Generate proto files"
 task :proto do
-  system "grpc_tools_ruby_protoc -I ./protos --ruby_out=./app/services --grpc_out=./app/services ./protos/helloworld.proto"
+  system "grpc_tools_ruby_protoc -I ./protos --ruby_out=./app/services --grpc_out=./app/services ./protos/blog.proto"
 end
 
 desc "Run gRPC Server"

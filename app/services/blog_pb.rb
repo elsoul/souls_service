@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("blog.proto", :syntax => :proto3) do
     add_message "Souls.HelloRequest" do
@@ -24,8 +25,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :has_series, :bool, 10
       optional :series_id, :uint32, 11
       optional :episode_num, :uint32, 12
-      optional :created_at, :uint32, 13
-      optional :updated_at, :uint32, 14
+      optional :created_at, :message, 13, "google.protobuf.Timestamp"
+      optional :updated_at, :message, 14, "google.protobuf.Timestamp"
     end
     add_message "Souls.GetArticlRequest" do
       optional :id, :uint32, 1
