@@ -5,6 +5,7 @@ require "logger"
 require "zeitwerk"
 require "dotenv/load"
 require "google/cloud/firestore"
+require "google/cloud/bigquery"
 require "./app"
 
 loader = Zeitwerk::Loader.new
