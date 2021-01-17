@@ -3,7 +3,6 @@ module HelloMethod
     logger = Logger.new(STDOUT)
     logger.info hello_req
     Souls::HelloReply.new(message: "Hello #{hello_req.name}")
-
   end
 
   def say_hello_again(hello_req, _unused_call)

@@ -1,12 +1,16 @@
 AllCops:
   EnabledByDefault: true
+  Exclude:
+    - "db/migrate/*.rb"
+    - "db/schema.rb"
+    - "app/services/*.rb"
 
 Style/AndOr:
   Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
-  
+
 Style/AsciiComments:
   Enabled: false
 
@@ -57,6 +61,7 @@ Style/EmptyElse:
 Layout/ExtraSpacing:
   Exclude:
     - "db/migrate/*.rb"
+    - "*.gemspec"
 
 Style/FormatString:
   EnforcedStyle: percent
@@ -67,9 +72,12 @@ Style/MissingElse:
 Style/StringHashKeys:
   Exclude:
     - "spec/queries/*.rb"
+    - "*.gemspec"
 
 Style/GuardClause:
   MinBodyLength: 5
+  Exclude:
+    - "spec/spec_helper.rb"
 
 Style/HashSyntax:
   EnforcedStyle: ruby19
@@ -187,12 +195,18 @@ Layout/MultilineAssignmentLayout:
   Enabled: false
 Style/Send:
   Enabled: false
-
-Style/ImplicitRuntimeError:
+Style/MixinUsage:
   Enabled: false
-
-Lint/NonDeterministicRequireOrder:
-  Enabled: false
-
 Style/GlobalStdStream:
+  Enabled: false
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+Layout/TrailingEmptyLines:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+    Enabled: false
+Style/ClassVars:
+  Exclude:
+  - "spec/spec_helper.rb"
+Style/StringConcatenation:
   Enabled: false

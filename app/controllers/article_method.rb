@@ -1,5 +1,4 @@
 module ArticleMethod
-
   def create_article(grpc_req, _unused_call)
     logger = Logger.new(STDOUT)
     firestore = Google::Cloud::Firestore.new
@@ -58,5 +57,4 @@ module ArticleMethod
   def update_article(grpc_req, _unused_call); end
 
   def delete_article(grpc_req, _unused_call); end
-
 end
