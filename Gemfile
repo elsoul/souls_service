@@ -10,7 +10,7 @@ gem "zeitwerk", "2.4.2"
 
 ## Select DB gem.
 # Firestore
-gem "google-cloud-firestore"
+gem "google-cloud-firestore", "2.4.0"
 
 # NoSQL
 # gem "mongoid", "7.2"
@@ -28,7 +28,7 @@ group :development, :test do
   gem "rack-test", "1.1.0"
   gem "rspec", "3.10.0"
   gem "rubocop", "1.7.0"
-  gem "souls", "0.8.0"
+  gem "souls", "0.10.3"
   gem "webmock", "3.11.0"
 end
 
